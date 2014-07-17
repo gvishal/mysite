@@ -1,5 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
+import re
+
+url = re.compile('^http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
 
 from bookmarks.models import Link,Tags
 # Create your views here.
@@ -20,18 +23,19 @@ def tag_detail(request,tag_id):
     
 def add_link(request):
   url_tag = request.POST['url_tag'].split(',')
-  link_url = url_tag[0]
-  data = iter(url_tag)
-  next(data)
-  tag_names = []
-  for d in data:
-    tag_names.append(d)
-  l = Link(url=link_url)
-  l.save()
-  for tag_name in tag_names:
-    t = Tags(name=tag_name)
-    t.save()
-    l.tags.add(t)
-  #return HttpResponse(tags)
-  
+  if url.match(url_tag[0]):
+    link_url = url_tag[0]
+    l = Link(url=link_url)
+    l.save()
+    tag_names = iter(url_tag)
+    next(tag_names)
+    for tag_name in tag_names:
+      t = Tags(name=tag_name)
+      t.save()
+      l.tags.add(t)
+  else:
+    tag_name = url_tag[0]
+    t = Tags.objects.filter(name = tag_name)
+    if t:
+      return redirect('/bookmarks/tag/%s' % t[0].id)
   return redirect('/bookmarks/')

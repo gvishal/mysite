@@ -1,9 +1,9 @@
 <br><hr>
-<h2>Add new link with tags</h2>
+<h2>Add new link with tags or search for a single tag</h2>
 <% if error_message %><p><strong>{{ error_message }}</strong></p>
 <form action="{% url 'bookmarks:addlink' %}" method="post">
 {% csrf_token %}
-<input type="text" name="url_tag" placeholder="To add <Url>,<Tag1>,...">
+<input type="text" name="url_tag" size="50" placeholder="To add <Url>,<Tag1>,... or search <Tag>">
 <input type="submit" value="Submit">
 </form>
 <br>
