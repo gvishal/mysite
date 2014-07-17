@@ -1,0 +1,7 @@
+<h1>{{tag.name}}</h1>
+<h2>Links with this tag</h2>
+<ul>
+{% for link in tag.link_set.all %}
+  <li>{{ link.url }}</li>
+{% endfor %}
+</ul>

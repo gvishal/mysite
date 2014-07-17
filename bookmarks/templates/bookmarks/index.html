@@ -1,0 +1,23 @@
+<br>
+<br>
+<hr>
+{% if all_link_list %}
+  <ul>
+  {% for link in all_link_list %}
+    <li><a href="{% url 'bookmarks:linkdetail' link.id %}">{{ link.url }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No links are available.</p>
+{% endif %}
+<hr>
+<br>
+{% if all_tag_list %}
+  <ul>
+  {% for tag in all_tag_list %}
+    <li><a href="{% url 'bookmarks:tagdetail' tag.id %}">{{ tag.name }}</a></li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No tags available</p>
+{% endif %}

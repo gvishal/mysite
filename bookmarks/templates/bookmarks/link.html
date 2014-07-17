@@ -1,0 +1,7 @@
+<h1>{{link.url}}</h1>
+<h2>Tags</h2>
+<ul>
+{% for tag in link.tags.all %}
+  <li>{{ tag.name }}</li>
+{% endfor %}
+</ul>

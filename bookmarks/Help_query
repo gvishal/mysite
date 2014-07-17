@@ -1,0 +1,7 @@
+l = link.objects.get(pk=id)
+link.objects.all()
+l.url
+
+l.tags.all()
+
+t.link_set.all()
