@@ -1,6 +1,14 @@
-<br>
+<br><hr>
+<h2>Add new link with tags</h2>
+<% if error_message %><p><strong>{{ error_message }}</strong></p>
+<form action="{% url 'bookmarks:addlink' %}" method="post">
+{% csrf_token %}
+<input type="text" name="url_tag" placeholder="To add <Url>,<Tag1>,...">
+<input type="submit" value="Submit">
+</form>
 <br>
 <hr>
+<h2>Links</h2>
 {% if all_link_list %}
   <ul>
   {% for link in all_link_list %}
@@ -12,6 +20,7 @@
 {% endif %}
 <hr>
 <br>
+<h2>Tags</h2>
 {% if all_tag_list %}
   <ul>
   {% for tag in all_tag_list %}

@@ -9,4 +9,6 @@ urlpatterns = patterns('',
   url(r'^link/(?P<link_id>\d+)/$', views.link_detail, name='linkdetail'),
   # ex: /bookmarks/tag/5
   url(r'^tag/(?P<tag_id>\d+)/$', views.tag_detail, name='tagdetail'),
+  # ex: /bookmarks/add_link
+  url(r'^add_link/$', views.add_link, name="addlink"),
 )

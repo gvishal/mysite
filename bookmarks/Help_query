@@ -4,4 +4,7 @@ l.url
 
 l.tags.all()
 
+
+t = Tags(name="webframework")
+
 t.link_set.all()
